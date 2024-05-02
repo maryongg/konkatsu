@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>婚活お助けメモ</title>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/sample.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap" rel="stylesheet">
+  </head>
+  <body style="font-family: 'Zen Kaku Gothic Antique', sans-serif;">
+    <header>
+      <h1>婚活お助けメモ</h1>
+      <h2>婚活で出会ったメンズたちを<br>
+        記録・比較検討・お見切りできるアプリです。</h2>
+    </header>
+    <main>
+      <label for="key">名前</label>
+      <input type="text" id="key" name="keyName" /><br />
+      <label for="met_date">出会った日</label>
+      <input type="date" id="met_date" name="metDate"><br />
+    <label for="age">年齢</label>
+    <select id="age" name="age" class="input-text"></select><br />
+      <label for="meeting_method">出会いの手段</label>
+      <select id="meeting_method" name="meetingMethod">
+        <option value="work_school">職場・学校</option>
+        <option value="introduction">紹介</option>
+        <option value="matching_app">マッチングアプリ</option>
+        <option value="street_con">街コン</option>
+        <option value="group_dating">合コン</option>
+        <option value="hobby_class">習い事・趣味</option></select
+      ><br />
+  
+      <label for="blood_type">血液型</label>
+      <select id="blood_type" name="bloodType">
+        <option value="A">A型</option>
+        <option value="B">B型</option>
+        <option value="O">O型</option>
+        <option value="AB">AB型</option></select
+      ><br />
+
+      <label for="residence">居住地</label>
+      <select id="residence" name="residence"></select>
+      <br />
+      <label for="education">学歴</label>
+      <select id="education" name="education">
+        <option value="high_school">高校卒</option>
+        <option value="college">短大/専門/高専卒</option>
+        <option value="university">大学卒</option>
+        <option value="graduate_school">大学院卒</option>
+        <option value="other">その他</option></select
+      ><br />
+      <label for="income">年収</label>
+      <select id="income" name="income">
+        <option value="under_2m">200万円未満</option>
+        <option value="2m_to_4m">200万円〜400万円</option>
+        <option value="4m_to_6m">400万円〜600万円</option>
+        <option value="6m_to_8m">600万円〜800万円</option>
+        <option value="8m_to_10m">800万円〜1000万円</option>
+        <option value="10m_to_15m">1000万円〜1500万円</option>
+        <option value="15m_to_20m">1500万円〜2000万円</option>
+        <option value="20m_to_30m">2000万円〜3000万円</option>
+        <option value="over_30m">3000万円以上</option></select
+      ><br />
+      <label for="job">職種</label>
+      <select id="job" name="job">
+        <option value="major_corporation">大手企業</option>
+        <option value="civil_servant">公務員</option>
+        <option value="receptionist">受付</option>
+        <option value="office_worker">事務員</option>
+        <option value="nurse">看護師</option>
+        <option value="nursery_teacher">保育士</option>
+        <option value="flight_attendant">客室乗務員</option>
+        <option value="secretary">秘書</option>
+        <option value="education_related">教育関連</option>
+        <option value="welfare_care">福祉・介護</option>
+        <option value="chef_nutritionist">調理師・栄養士</option>
+        <option value="apparel_shop">アパレル・ショップ</option>
+        <option value="beauty_related">美容関係</option>
+        <option value="bridal">ブライダル</option>
+        <option value="finance">金融</option>
+        <option value="insurance">保険</option>
+        <option value="advertising">広告</option>
+        <option value="mass_media">マスコミ</option>
+        <option value="web_industry">WEB業界</option>
+        <option value="listed_company">上場企業</option>
+        <option value="executive">経営者・役員</option>
+        <option value="doctor">医師</option>
+        <option value="pharmacist">薬剤師</option>
+        <option value="lawyer">弁護士</option>
+        <option value="certified_accountant">公認会計士</option>
+        <option value="pilot">パイロット</option>
+        <option value="major_trading_company">大手商社</option>
+        <option value="consultant">コンサル</option>
+        <option value="major_foreign_company">大手外資</option>
+        <option value="foreign_finance">外資金融</option>
+        <option value="it_related">IT関連</option>
+        <option value="creator">クリエイター</option>
+        <option value="announcer">アナウンサー</option>
+        <option value="entertainment_model">芸能・モデル</option>
+        <option value="event_companion">イベントコンパニオン</option>
+        <option value="athlete">スポーツ選手</option>
+        <option value="service_industry">接客業</option>
+        <option value="real_estate">不動産</option>
+        <option value="construction_related">建築関連</option>
+        <option value="communication">通信</option>
+        <option value="distribution">流通</option>
+        <option value="pharmaceutical">製薬</option>
+        <option value="food_related">食品関連</option>
+        <option value="travel_related">旅行関係</option>
+        <option value="entertainment">エンターテインメント</option>
+        <option value="company_employee">会社員</option>
+        <option value="student">学生</option>
+        <option value="freelancer">自由業</option>
+        <option value="tax_accountant">税理士</option>
+        <option value="engineer">エンジニア</option>
+        <option value="architect">建築士</option>
+        <option value="hairdresser">美容師</option>
+        <option value="dentist">歯科医師</option>
+        <option value="dental_hygienist">歯科衛生士</option>
+        <option value="other">その他</option></select
+      ><br />
+      <label for="height">身長</label>
+      <select id="height" name="height">
+        <!-- 130cmから200cmまでのオプションはJavaScriptで生成 --></select
+      ><br />
+      <label for="body_shape">体型</label>
+      <select id="body_shape" name="bodyShape">
+        <option value="slim">スリム</option>
+        <option value="slightly_slim">やや細め</option>
+        <option value="normal">普通</option>
+        <option value="glamorous">グラマー</option>
+        <option value="muscular">筋肉質</option>
+        <option value="slightly_plump">ややぽっちゃり</option>
+        <option value="plump">太め</option></select
+      ><br />
+      <label for="marital_history">結婚歴</label>
+      <select id="marital_history" name="maritalHistory">
+        <option value="unmarried">未婚</option>
+        <option value="divorced">離別</option>
+        <option value="widowed">死別</option></select
+      ><br />
+
+      <label for="children">子供の有無</label>
+      <select id="children" name="children">
+        <option value="none">なし</option>
+        <option value="living_together">同居中</option>
+        <option value="living_apart">別居中</option></select
+      ><br />
+     
+      <label for="dating_costs">デート費用</label>
+      <select id="dating_costs" name="datingCosts">
+        <option value="male_treat">男性のおごり</option>
+        <option value="male_pays_more">男性が多めに払った</option>
+        <option value="dutch">割り勘</option>
+        <option value="female_pays_more">私が多めに払った</option>
+        <option value="female_treat">私がおごった</option></select
+      ><br />
+
+      
+      <label for="holiday">休日</label>
+      <select id="holiday" name="holiday">
+        <option value="weekends_holidays">土日祝</option>
+        <option value="weekdays">平日</option>
+        <option value="irregular">不定期</option>
+        <option value="other">その他</option></select
+      ><br />
+      <label for="alcohol">お酒</label>
+      <select id="alcohol" name="alcohol">
+        <option value="none">飲まない</option>
+        <option value="yes">飲む</option>
+        <option value="sometimes">ときどき飲む</option></select
+      ><br />
+      <label for="smoking">タバコ</label>
+      <select id="smoking" name="smoking">
+        <option value="none">吸わない</option>
+        <option value="yes">吸う</option></select
+      ><br /><br>
+
+      <label for="memo">🔽お相手の特徴や気づいたこと🔽</label><br />
+      <textarea id="memo" name="memoContent"></textarea><br />
+      <ul>
+        <li id="save">新しいメンズを登録！</li>
+        <li id="clear">お見切りする！</li>
+      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>選択</th> <!-- チェックボックス用の列を追加 -->
+            <th>名前</th>
+            <th>出会った日</th>
+            <th>年齢</th>
+            <th>出会いの手段</th>
+            <th>血液型</th>
+            <th>居住地</th>
+            <th>学歴</th>
+            <th>年収</th>
+            <th>職種</th>
+            <th>身長</th>
+            <th>体型</th>
+            <th>結婚歴</th>
+            <th>子供の有無</th>
+            <th>デート費用</th>
+            <th>休日</th>
+            <th>お酒</th>
+            <th>タバコ</th>
+            <th>メモ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- データ行はJavaScriptで動的に生成される -->
+        </tbody>
+      </table>
+      <script>
+        $(document).ready(function() {
+          var data = [
+            // ここにサンプルデータが入る
+          ];
+
+          function addRow(data) {
+            var newRow =
+              "<tr>" +
+              "<td><input type='checkbox' class='delete-checkbox'></td>" + // チェックボックスを追加
+              "<td>" + data.key + "</td>" +
+              "<td>" + data.met_date + "</td>" +
+              "<td>" + data.age + "</td>" +
+              "<td>" + data.meeting_method + "</td>" +
+              "<td>" + data.blood_type + "</td>" +
+              "<td>" + data.residence + "</td>" +
+              "<td>" + data.education + "</td>" +
+              "<td>" + data.income + "</td>" +
+              "<td>" + data.job + "</td>" +
+              "<td>" + data.height + "</td>" +
+              "<td>" + data.body_shape + "</td>" +
+              "<td>" + data.marital_history + "</td>" +
+              "<td>" + data.children + "</td>" +
+              "<td>" + data.dating_costs + "</td>" +
+              "<td>" + data.holiday + "</td>" +
+              "<td>" + data.alcohol + "</td>" +
+              "<td>" + data.smoking + "</td>" +
+              "<td>" + data.memo + "</td>" +
+              "</tr>";
+            $("table tbody").append(newRow);
+          }
+
+          data.forEach(function(item) {
+            addRow(item);
+          });
+
+          $("#save").click(function() {
+            var newData = {
+              key: $("#key").val(),
+              met_date: $("#met_date").val(),
+              age: $("#age").val(),
+              meeting_method: $("#meeting_method option:selected").text(),
+              blood_type: $("#blood_type option:selected").text(),
+              residence: $("#residence option:selected").text(),
+              education: $("#education option:selected").text(),
+              income: $("#income option:selected").text(),
+              job: $("#job option:selected").text(),
+              height: $("#height option:selected").text(),
+              body_shape: $("#body_shape option:selected").text(),
+              marital_history: $("#marital_history option:selected").text(),
+              children: $("#children option:selected").text(),
+              dating_costs: $("#dating_costs option:selected").text(),
+              holiday: $("#holiday option:selected").text(),
+              alcohol: $("#alcohol option:selected").text(),
+              smoking: $("#smoking option:selected").text(),
+              memo: $("#memo").val()
+            };
+
+            // 重複チェック
+            var isDuplicate = false;
+            $("table tbody tr").each(function() {
+              if ($(this).find("td:eq(1)").text() === newData.key) {
+                isDuplicate = true;
+                return false; // ループを抜ける
+              }
+            });
+
+            if (!isDuplicate) {
+              addRow(newData);
+              saveToLocalStorage(newData); // ローカルストレージに保存
+            }
+          });
+          
+
+          // 新しいデータを保存する関数
+          function saveToLocalStorage(data) {
+            var dataList = JSON.parse(localStorage.getItem('userData')) || [];
+            dataList.push(data);
+            localStorage.setItem('userData', JSON.stringify(dataList));
+          }
+
+          // 削除ボタンがクリックされた時の処理
+          $("#clear").click(function() {
+            // 削除前の確認アラート
+            if (confirm('本当にこのメンズをお見切りしますか？')) {
+              $("input[type='checkbox']:checked").each(function() {
+                $(this).closest("tr").remove();
+              });
+              // 削除後のアラート
+              alert('お見切りしました！次行きましょう！');
+            }
+          });
+        });
+
+        // 年齢のオプションを生成
+        for (var age = 18; age <= 100; age++) {
+          $('#age').append($('<option>', {
+            value: age,
+            text: age + '歳'
+          }));
+        }
+
+        // 居住地のオプションを生成（47都道府県）
+        var prefectures = ["北海道","青森県","岩手県","宮城県","秋田県","山形県","福島県","茨城県","栃木県","群馬県","埼玉県","千葉県","東京都","神奈川県","新潟県","富山県","石川県","福井県","山梨県","長野県","岐阜県","静岡県","愛知県","三重県","滋賀県","京都府","大阪府","兵庫県","奈良県","和歌山県","鳥取県","島根県","岡山県","広島県","山口県","徳島県","香川県","愛媛県","高知県","福岡県","佐賀県","長崎県","熊本県","大分県","宮崎県","鹿児島県","沖縄県"];
+        $.each(prefectures, function(index, prefecture) {
+          $('#residence').append($('<option>', {
+            value: prefecture,
+            text: prefecture
+          }));
+        });
+
+        // 身長のオプションを生成（130cmから200cm）
+        for (var height = 130; height <= 200; height++) {
+          $('#height').append($('<option>', {
+            value: height,
+            text: height + 'cm'
+          }));
+        }
+      </script>
+    </main>
+  </body>
+</html>
