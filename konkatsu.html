@@ -199,7 +199,7 @@
         const tall = row.find("td:nth-child(5)").text();
         const cost = row.find("td:nth-child(6)").text();
         const memo = row.find("td:nth-child(7)").text();
-     
+    
         // 進行中のメンズたちに行を追加
         const newRow = "<tr><td><input type='checkbox'></td><td>" + name + "</td><td>" + old + "</td><td>" + money + "</td><td>" + tall + "</td><td>" + cost + "</td><td>" + memo + "</td></tr>";
         $("#shinkou tbody").append(newRow);
