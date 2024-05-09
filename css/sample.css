@@ -1,0 +1,213 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center; /* 左揃えから中央揃えに変更 */
+  font-size: 32px;
+  width: 100%;
+}
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+h1 {
+  font-size: 40px;
+  text-align: center; /* 中央揃えを追加 */
+}
+
+h2{
+  font-size: 30px;
+}
+main {
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  text-align: center; /* 中央揃えを追加 */
+}
+
+main label {
+  font-size: 20px;
+}
+footer {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+p {
+  font-size: 200%;
+  text-align: center;
+  border-bottom: 1px solid #fff;
+  height: 200px;
+}
+ul {
+  padding: 0;
+  border-top: 1px solid #000000;
+  display: table; /* 定義 */
+  table-layout: fixed;
+  width: 96%;
+  font-size: 80%;
+  margin: 0 3%;
+  text-align: center;
+}
+li {
+  list-style-type: none;
+  border: 1px solid #666;
+  background-color: #fff;
+  display: table-cell; /* 定義 */
+  cursor: pointer;
+  color: #0d7dfd;
+  text-align: center; /* 中央揃えを追加 */
+}
+li:hover {
+  background: #0d7dfd;
+  color: #fff;
+}
+/* 共通スタイルクラス */
+.input-style {
+  margin: 10px 3%;
+  width: 95%;
+  font-size: 80%;
+  background-color: rgb(241, 239, 239);
+  box-shadow: 3px 3px 3px 3px #555;
+  text-align: center; /* 中央揃えを追加 */
+}
+
+textarea,
+#key {
+  font-size: 120%; /* 文字サイズを大きく設定 */
+  height: 100px;
+  width: 90%;
+  background-color: #e1efff;
+  text-align: center; /* 中央揃えを追加 */
+}
+
+table {
+  margin: 20px auto;
+  border: 1px solid #8dc3f5;
+  width: 90%;
+  height: auto;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center; /* 中央揃えを追加 */
+}
+
+th,
+td {
+  width: 120px; /* thとtdの幅を18等分に設定 */
+  font-size: 16px;
+  border-bottom: 1px solid #8dc3f5;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+th {
+  background-color: #d0e7fc; /* 水色の背景 */
+}
+
+#deletedRecordsTable td {
+  background-color:rgba(235, 231, 231, 0.985)
+}
+
+select {
+  font-size: 20px; /* 文字の大きさを大きく */
+  padding: 10px 20px; /* ボタンの内側の余白を増やす */
+  background-color: #d0e7fc; /* 背景色 */
+  border: none; /* 枠線なし */
+  border-radius: 5px; /* 角を丸く */
+  cursor: pointer; /* カーソルをポインターに */
+  box-shadow: 3px 3px 5px #555; /* 影をつける */
+}
+
+button:hover {
+  background-color: #0056b3; /* ホバー時の背景色 */
+}
+
+#name {
+  width: 150%;
+  height: 50%; /* 幅を広くする */
+  text-align: center; /* 中央揃えを追加 */
+}
+
+#key {
+  width: 20%;
+  height: 50%; /* 幅を広くする */
+  text-align: center;
+  border-radius: 10px; /* 角を丸くする */
+}
+
+textarea {
+  width: 60%;
+  height: 100px;
+  text-align: center;
+  border-radius: 10px;
+  border-color: #0056b3;
+  border: 1px solid #0056b3;
+  /* 角を丸くする */
+}
+
+#met_date {
+  width: 200px;
+  height: 50px;
+  font-size: 18px;
+  background-color: #d0e7fc; /* 背景色を白に設定 */
+  color: #000000; /* 文字色を黒に設定 */
+  border: 1px solid #0056b3;
+  border-radius: 5px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%; 
+  height: 230%;/* Could be more or less, depending on screen size */
+}
+
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.re-register {
+  background-color: #d0e7fc;; /* ここに他の要素と同じ背景色を指定 */
+  border: none;
+  color: #0056b3; /* テキスト色 */
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px; /* 角の丸み */
+}
+
+.re-register:hover {
+  background-color: #8dc3f5;
+  border: 2px solid #0056b3; 
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>婚活お助けメモ</title>
+    <script src="js/jquery-2.1.3.min.js"></script>
+    <link rel="stylesheet" href="css/sample.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+Antique&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="font-family: 'Zen Kaku Gothic Antique', sans-serif">
+    <header>
+      <h1>婚活お助けメモ</h1>
+      <h2>
+        婚活で出会ったメンズたちを<br />
+        記録・比較検討・お見切りできるアプリです。
+      </h2>
+    </header>
+
+    <main>
+      <label for="key">名前</label><br />
+      <input type="text" id="key" name="key"><br />
+      <label for="old">年齢</label>
+      <select id="old" name="old"></select><br />
+      <label for="money">年収</label>
+      <select id="money" name="money"></select><br />
+      <label for="tall">身長</label>
+      <select id="tall" name="tall"></select><br />
+      <label for="cost">デート費用</label>
+      <select id="cost" name="cost"></select><br />
+      <label for="memo">🔽お相手の特徴や気づいたこと🔽</label><br />
+      <textarea id="memo" name="memoContent"></textarea><br />
+      <ul>
+        <li id="save">新しいメンズを登録！</li>
+        <li id="clear">お見切りする！</li>
+      </ul>
+    
+      <table id="shinkou">
+        <thead>
+          <tr>
+            <h2>進行中のメンズたち</h2>
+            <th>選択</th><!-- チェックボックス用の列を追加 -->  
+            <th>名前</th>
+            <th>年齢</th>
+            <th>年収</th>
+            <th>身長</th>
+            <th>デート費用</th>
+            <th>メモ</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+          <!-- データ行はJavaScriptで動的に生成される -->
+        </tbody>
+      </table>
+
+      <table id="omikiri">
+        <thead>
+          <tr>
+            <h2>お見切りメンズ一覧</h2>
+            <!-- <th>選択</th> -->
+            <th>再登録</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th>年収</th>
+            <th>身長</th>
+            <th>デート費用</th>
+            <th>メモ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 削除されたデータの行がここに追加される -->
+        </tbody>
+      </table>
+    </main>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
+      import {
+  getDatabase,
+        ref,
+        push,
+        set,
+        onChildAdded,onChildRemoved,onChildChanged,remove
+      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js";
+      import {
+        getStorage,
+        ref as sRef,
+        uploadBytes,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-storage.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCoYOpXc12mqblZgK_tSt8U1l32tAF__6E",
+        authDomain: "konkatsufire-43075.firebaseapp.com",
+        projectId: "konkatsufire-43075",
+        storageBucket: "konkatsufire-43075.appspot.com",
+        messagingSenderId: "725195122041",
+        appId: "1:725195122041:web:2953ca33b8b4ba30c0fba8",
+      };
+
+      // Firebaseアプリの初期化
+      const app = initializeApp(firebaseConfig);
+        // データベースの参照を取得
+      const db = getDatabase(app);
+    
+
+      // 年齢の選択肢を設定
+      for (let i = 18; i <= 99; i++) {
+        $('#old').append($('<option>', {
+          value: i,
+          text: i + '歳'
+        }));
+      }
+
+      // 年収の選択肢を設定
+      const incomes = ['200万円未満', '200〜400万円', '400〜600万円', '600〜800万円', '800〜1000万円', '1000〜1500万円', '1500〜2000万円', '2000〜2500万円', '2500〜3000万円', '3000万円以上'];
+      incomes.forEach(income => {
+        $('#money').append($('<option>', {
+          value: income,
+          text: income
+        }));
+      });
+
+      // 身長の選択肢を設定
+      for (let i = 150; i <= 200; i++) {
+        $('#tall').append($('<option>', {
+          value: i,
+          text: i + 'cm'
+        }));
+      }
+
+      // デート費用の選択肢を設定
+      const costs = ['男性のおごり', '男性が多めに払った', '割り勘', '私が多めに払った', '私のおごり'];
+      costs.forEach(cost => {
+        $('#cost').append($('<option>', {
+          value: cost,
+          text: cost
+        }));
+      });
+
+      $("#save").on("click",function(){
+      const key = $("#key").val();
+      const old = $("#old").val()+"歳";
+      const money = $("#money").val();
+      const tall = $("#tall").val()+"cm";
+      const cost = $("#cost").val();
+      const memoContent =$("#memo").val();
+      const newRow = "<tr><td><input type='checkbox'></td><td>" + key + "</td><td>" + old + "</td><td>" + money + "</td><td>" + tall + "</td><td>" + cost + "</td><td>" + memoContent + "</td></tr>";
+      $("#shinkou tbody").append(newRow);
+
+       // Firebaseにデータを保存
+      const newPostRef = push(ref(db, 'mens')); // 'mens'はデータを保存するためのノード名
+      set(newPostRef, {
+      name: key,
+      memo: memoContent
+      });
+      });
+
+      
+      $("#clear").on("click",function(){
+        const checkbox = $("#shinkou tbody input:checked");
+        alert("本当にお見切りしますか？");
+        checkbox.each(function(){
+        const row = $(this).closest("tr");
+        const name = row.find("td:nth-child(2)").text();
+        const old  = row.find("td:nth-child(3)").text();
+        const money = row.find("td:nth-child(4)").text();
+        const tall = row.find("td:nth-child(5)").text();
+        const cost = row.find("td:nth-child(6)").text();
+        const memo = row.find("td:nth-child(7)").text();
+
+        const omikiriRow = "<tr><td><button class='re-register'>再登録</button></td><td>"+ name + "</td><td>" + old + "</td><td>" + money + "</td><td>" + tall + "</td><td>" + cost + "</td><td>" + memo + "</td></tr>";
+        $("#omikiri tbody").append(omikiriRow);
+
+        const dataId = row.attr("id");
+        const dataRef = ref(db, "mens/" + dataId);
+
+        remove(dataRef)
+        .then(() => {
+          row.remove();
+          alert("お見切りしました！次のメンズに行きましょう！");
+        });
+      });
+      });
+
+      // お見切りメンズ一覧から再登録する機能
+      $("#omikiri").on("click", ".re-register", function() {
+        const row = $(this).closest("tr");
+        const name = row.find("td:nth-child(2)").text();
+        const old = row.find("td:nth-child(3)").text();
+        const money = row.find("td:nth-child(4)").text();
+        const tall = row.find("td:nth-child(5)").text();
+        const cost = row.find("td:nth-child(6)").text();
+        const memo = row.find("td:nth-child(7)").text();
+     
+        // 進行中のメンズたちに行を追加
+        const newRow = "<tr><td><input type='checkbox'></td><td>" + name + "</td><td>" + old + "</td><td>" + money + "</td><td>" + tall + "</td><td>" + cost + "</td><td>" + memo + "</td></tr>";
+        $("#shinkou tbody").append(newRow);
+        alert("復活させますか？");
+
+        // Firebaseにデータを再登録
+        const newPostRef = push(ref(db, 'mens'));
+        set(newPostRef, {
+          name: name,
+          age: old,
+          income: money,
+          height: tall,
+          dateCost: cost,
+          memo: memo
+        });
+
+        // お見切りメンズ一覧から行を削除
+        row.remove();
+        alert("再アタックしましょう！");
+      });
+
+  </script>
+  </body>
+</html>
